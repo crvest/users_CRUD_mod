@@ -13,12 +13,12 @@ def users():
     return render_template('users.html', users = User.get_all())
 
 # displays new user creation page
-@app.route('users/new')
+@app.route('/users/new')
 def new():
     return render_template('new.html')
 
 # send created user data to database
-@app.route('users/create', methods=['POST'])
+@app.route('/users/create', methods=['POST'])
 def create():
     # prints form data to terminal
     print(request.form)
@@ -46,13 +46,13 @@ def show(id):
     return render_template('show.html', user = User.get_one(data))
 
 # send updated data to database
-@app.route('users/update', methods=['POST'])
+@app.route('/users/update', methods=['POST'])
 def update():
     User.update(request.form)
     return redirect('/users')
 
 # deletes user data
-@app.route('users/delete/<int:id>')
+@app.route('/users/delete/<int:id>')
 def delete(id):
     data = {
         'id' : id
@@ -60,5 +60,5 @@ def delete(id):
     User.delete(data)
     return redirect('/users')
 
-if __name_ == "__main__":
+if __name__ == "__main__":
     app.run(debug=True)
